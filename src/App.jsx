@@ -7,6 +7,8 @@ import Contact from "./components/contact/Contact"
 import Menu from './components/menu/Menu'
 import "./app.scss";
 import { useState } from "react";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [menuOpen,setMenuOpen] = useState(false)
@@ -21,6 +23,7 @@ function App() {
        <Testimonials/>
        <Contact/>
      </div>
+     <ToastContainer />
     </div>
   );
 }

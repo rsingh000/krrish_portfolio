@@ -3,16 +3,32 @@ import { useFormik} from 'formik';
 import * as Yup from 'yup';
 import { TextField, Button } from '@material-ui/core';
 import emailjs from 'emailjs-com';
-require('dotenv').config();
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { css } from 'glamor';
+
 
 export default function Contact() {
 
+
   function sendEmail(values) {
-    emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, values, process.env.REACT_APP_USER_ID )
+    emailjs.send('service_mkeikn7', 'template_e5x2ngk', values, 'user_qRUawaqz2bgCI93JndIcH' )
         .then((result) => {
-            alert('success')
+          toast.success('Thank You, Message sent successfully!',{
+            position: toast.POSITION.BOTTOM_RIGHT,
+            progressClassName: css({
+              background: '#15023a',
+            }),
+            enter: 'zoomIn',
+            exit: 'zoomOut',
+            appendPosition: false,
+            collapse: true,
+            collapseDuration: 300
+        })
         }, (error) => {
-            alert('failure')
+          toast.error('Error, Please try again!',{
+            position: toast.POSITION.BOTTOM_RIGHT
+        })
         })
   }
 
@@ -40,50 +56,52 @@ export default function Contact() {
   });
 
   return (
-    <div className="contact" id="contact">
-      <div className="left">
-        <img src="assets/shake.png" alt="" />
-      </div>
-      <div className="right">
-        <h2>Contact</h2>
-        <form className="mt-3" onSubmit={formik.handleSubmit}>
-        <div className="form-group">
-            <TextField
-              style={{width:'100%'}}
-              name="name"
-              label="Enter your name"
-              variant="outlined"
-              {...formik.getFieldProps('name')}
-              {...errorHelper(formik,'name')}
-            />
-          </div>
+    <>
+      <div className="contact" id="contact">
+        <div className="left">
+          <img src="assets/shake.png" alt="" />
+        </div>
+        <div className="right">
+          <h2>Contact</h2>
+          <form className="mt-3" onSubmit={formik.handleSubmit}>
           <div className="form-group">
-            <TextField
-              style={{width:'100%'}}
-              name="email"
-              label="Enter your email"
-              variant="outlined"
-              {...formik.getFieldProps('email')}
-              {...errorHelper(formik,'email')}
-            />
-          </div>
-          <div className="form-group">
-            <TextField
-              style={{width:'100%'}}
-              name="message"
-              label="Add your message here"
-              variant="outlined"
-              multiline
-              rows={4}
-              {...formik.getFieldProps('message')}
-              {...errorHelper(formik,'message')}
-            />
-          </div>
-          <Button variant="contained" color="primary" type="submit">
-            Get in Touch
-          </Button>
-        </form>
+              <TextField
+                style={{width:'100%'}}
+                name="name"
+                label="Enter your name"
+                variant="outlined"
+                {...formik.getFieldProps('name')}
+                {...errorHelper(formik,'name')}
+              />
+            </div>
+            <div className="form-group">
+              <TextField
+                style={{width:'100%'}}
+                name="email"
+                label="Enter your email"
+                variant="outlined"
+                {...formik.getFieldProps('email')}
+                {...errorHelper(formik,'email')}
+              />
+            </div>
+            <div className="form-group">
+              <TextField
+                style={{width:'100%'}}
+                name="message"
+                label="Add your message here"
+                variant="outlined"
+                multiline
+                rows={4}
+                {...formik.getFieldProps('message')}
+                {...errorHelper(formik,'message')}
+              />
+            </div>
+            <Button variant="contained" color="primary" type="submit">
+              Get in Touch
+            </Button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
