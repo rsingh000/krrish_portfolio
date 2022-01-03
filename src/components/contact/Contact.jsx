@@ -8,7 +8,7 @@ require('dotenv').config();
 export default function Contact() {
 
   function sendEmail(values) {
-    emailjs.send(process.env.SERVICE_ID, process.env.TEMPLATE_ID, values, process.env.USER_ID )
+    emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, values, process.env.REACT_APP_USER_ID )
         .then((result) => {
             alert('success')
         }, (error) => {
