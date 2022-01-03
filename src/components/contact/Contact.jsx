@@ -63,7 +63,7 @@ export default function Contact() {
         </div>
         <div className="right">
           <h2>Contact</h2>
-          <form className="mt-3" onSubmit={formik.handleSubmit}>
+          <form onSubmit={formik.handleSubmit}>
           <div className="form-group">
               <TextField
                 style={{width:'100%'}}
