@@ -14,7 +14,7 @@ export default function Contact() {
   function sendEmail(values) {
     emailjs.send('service_mkeikn7', 'template_e5x2ngk', values, 'user_qRUawaqz2bgCI93JndIcH' )
         .then((result) => {
-          toast.success('Thank You, Message sent successfully!',{
+          toast.success('Thank You, Message sent!',{
             position: toast.POSITION.BOTTOM_RIGHT,
             progressClassName: css({
               background: '#15023a',
