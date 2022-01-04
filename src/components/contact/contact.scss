@@ -71,14 +71,14 @@
 
         @include mobile{
           width: 200px;
-          height: 5px;
+          height: 33px;
         }
       }
 
       button{
         @include mobile{
-          width: 150px;
-          height: 20px;
+          width: 130px;
+          height: 30px;
         }
       }
     }
